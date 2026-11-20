@@ -153,14 +153,16 @@ def enviar(texto, chats):
     """Devuelve True solo si llegó a todos los destinatarios."""
     token = os.environ["TELEGRAM_TOKEN"].strip().lstrip("﻿")
     todo_ok = True
-    for chat in chats:
+    for n, chat in enumerate(chats, 1):
         data = urllib.parse.urlencode({"chat_id": chat, "text": texto}).encode()
         for intento in range(3):
             try:
                 urllib.request.urlopen(f"https://api.telegram.org/bot{token}/sendMessage", data, timeout=30)
                 break
             except Exception as e:
-                print(f"Falló el envío a {chat} (intento {intento + 1}): {e}")
+                # Los logs de un repo público son visibles: nunca imprimir token ni chat ids
+                err = str(e).replace(token, "***").replace(chat, "***")
+                print(f"Falló el envío al destinatario {n} (intento {intento + 1}): {err}")
                 time.sleep(3)
         else:
             todo_ok = False
