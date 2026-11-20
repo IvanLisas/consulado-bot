@@ -44,7 +44,11 @@ def main():
         telegram(aviso + " (prueba)")
         return
 
-    if NO_CITAS in html:
+    # Sin citas, la página no tiene formulario ni campos. Si aparecen, avisamos aunque
+    # el texto "no hay citas" siga estando (por ejemplo, oculto).
+    hay_formulario = any(t in html for t in ("<form", "<select", "<input"))
+
+    if NO_CITAS in html and not hay_formulario:
         print("Sin citas todavía")
         return
 
