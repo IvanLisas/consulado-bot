@@ -38,8 +38,10 @@ def main():
         print("Página inesperada, no se puede decidir")
         sys.exit(1)
 
+    aviso = "🚨 Consulado de España: puede haber citas de alta de matrícula. Entrá ya: " + URL
+
     if os.environ.get("FORCE_ALERT") == "true":
-        telegram("🧪 PRUEBA del bot (no es un aviso real): así llegaría el mensaje cuando haya citas. " + URL)
+        telegram(aviso + " (prueba)")
         return
 
     if NO_CITAS in html:
@@ -47,7 +49,7 @@ def main():
         return
 
     print("¡Posibles citas!")
-    telegram("🚨 Consulado de España: puede haber citas de alta de matrícula. Entrá ya: " + URL)
+    telegram(aviso)
 
 
 if __name__ == "__main__":
