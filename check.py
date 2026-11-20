@@ -1,4 +1,4 @@
-"""Avisa por Telegram cuando la página de citas de alta de matrícula
+﻿"""Avisa por Telegram cuando la página de citas de alta de matrícula
 deja de decir 'no hay citas disponibles'.
 
 Variables de entorno:
@@ -16,9 +16,9 @@ MARCADOR = "matrícula"  # texto que siempre debe estar en la página si cargó 
 
 
 def telegram(texto):
-    token = os.environ["TELEGRAM_TOKEN"]
+    token = os.environ["TELEGRAM_TOKEN"].strip().lstrip("\ufeff")
     fallos = 0
-    for chat in os.environ["TELEGRAM_CHAT_IDS"].split(","):
+    for chat in os.environ["TELEGRAM_CHAT_IDS"].lstrip("\ufeff").split(","):
         data = urllib.parse.urlencode({"chat_id": chat.strip(), "text": texto}).encode()
         try:
             urllib.request.urlopen(f"https://api.telegram.org/bot{token}/sendMessage", data, timeout=30)
