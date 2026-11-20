@@ -1,4 +1,4 @@
-﻿"""Avisa por Telegram cuando la página de citas de alta de matrícula
+"""Avisa por Telegram cuando la página de citas de alta de matrícula
 deja de decir 'no hay citas disponibles'.
 
 Variables de entorno:
