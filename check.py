@@ -38,6 +38,10 @@ def main():
         print("Página inesperada, no se puede decidir")
         sys.exit(1)
 
+    if os.environ.get("FORCE_ALERT") == "true":
+        telegram("🧪 PRUEBA del bot (no es un aviso real): así llegaría el mensaje cuando haya citas. " + URL)
+        return
+
     if NO_CITAS in html:
         print("Sin citas todavía")
         return
