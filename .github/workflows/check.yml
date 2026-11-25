@@ -1,7 +1,7 @@
 name: check-citas
+# El chequeo automático (cada minuto) corre en Cloudflare Workers: ver worker/.
+# Este workflow queda solo como respaldo manual (GitHub casi no ejecuta crons frecuentes).
 on:
-  schedule:
-    - cron: "*/5 * * * *"
   workflow_dispatch:
     inputs:
       force_alert:

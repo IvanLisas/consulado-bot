@@ -1,0 +1,12 @@
+name = "consulado-bot"
+main = "src/index.js"
+compatibility_date = "2026-11-01"
+workers_dev = false          # sin URL pública; solo corre por cron
+preview_urls = false
+
+[triggers]
+crons = ["* * * * *"]        # cada minuto
+
+# wrangler crea el namespace automáticamente en el primer deploy
+[[kv_namespaces]]
+binding = "STATE"
